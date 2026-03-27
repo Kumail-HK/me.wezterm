@@ -1,0 +1,150 @@
+# ╔══════════════════════════════════════════════════════════╗
+# ║           Starship Prompt Configuration                  ║
+# ║  Shows: dir · git branch · python env · exit code       ║
+# ╚══════════════════════════════════════════════════════════╝
+ 
+# Overall format — left prompt line 1
+format = """
+[╭─](bold bright-black)$os$username$hostname $directory$git_branch$git_status$python$conda$fill$cmd_duration$time
+[╰─](bold bright-black)$character"""
+ 
+right_format = ""
+ 
+add_newline = true
+ 
+# ─────────────────────────────────────────
+# OS icon
+# ─────────────────────────────────────────
+[os]
+disabled = false
+style = "bold fg:#89b4fa"
+ 
+[os.symbols]
+Linux   = " "
+Ubuntu  = " "
+Debian  = " "
+Arch    = " "
+Fedora  = " "
+Windows = " "
+Macos   = " "
+ 
+# ─────────────────────────────────────────
+# Username (only shown when relevant)
+# ─────────────────────────────────────────
+[username]
+show_always = false
+style_user  = "bold fg:#cdd6f4"
+style_root  = "bold fg:#f38ba8"
+format      = "[$user]($style)"
+ 
+[hostname]
+ssh_only = true
+style    = "bold fg:#fab387"
+format   = "@[$hostname]($style) "
+ 
+# ─────────────────────────────────────────
+# Directory
+# ─────────────────────────────────────────
+[directory]
+style            = "bold fg:#89dceb"
+read_only        = " 󰌾"
+read_only_style  = "fg:#f38ba8"
+truncation_length = 4
+truncate_to_repo = true
+home_symbol      = "~"
+format           = "[ $path]($style)[$read_only]($read_only_style) "
+ 
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Desktop"   = " "
+"Music"     = " "
+"Pictures"  = " "
+ 
+# ─────────────────────────────────────────
+# Git
+# ─────────────────────────────────────────
+[git_branch]
+symbol    = " "
+style     = "bold fg:#a6e3a1"
+format    = "on [$symbol$branch(:$remote_branch)]($style) "
+truncation_length = 20
+truncation_symbol = "…"
+ 
+[git_status]
+style     = "bold fg:#f38ba8"
+format    = "([$all_status$ahead_behind]($style) )"
+conflicted  = "⚡"
+ahead       = "⇡${count}"
+behind      = "⇣${count}"
+diverged    = "⇕⇡${ahead_count}⇣${behind_count}"
+up_to_date  = ""
+untracked   = "?"
+stashed     = "󰏗 "
+modified    = "!"
+staged      = "+"
+renamed     = "»"
+deleted     = "✘"
+ 
+# ─────────────────────────────────────────
+# Python  (virtualenv / pyenv / conda)
+# ─────────────────────────────────────────
+[python]
+symbol          = " "
+style           = "bold fg:#f9e2af"
+format          = 'via [$symbol$pyenv_prefix($version )(\($virtualenv\) )]($style)'
+detect_files    = ["requirements.txt", "setup.py", "setup.cfg", "pyproject.toml", "Pipfile", ".python-version"]
+detect_folders  = [".venv", "venv", "__pycache__"]
+python_binary   = ["python3", "python"]
+ 
+[conda]
+symbol  = " "
+style   = "bold fg:#f9e2af"
+format  = "[$symbol$environment]($style) "
+ignore_base = true
+ 
+# ─────────────────────────────────────────
+# Fill (pushes right-side items to the edge)
+# ─────────────────────────────────────────
+[fill]
+symbol = " "
+ 
+# ─────────────────────────────────────────
+# Command duration
+# ─────────────────────────────────────────
+[cmd_duration]
+min_time   = 2000
+style      = "bold fg:#6c7086"
+format     = "took [$duration]($style) "
+ 
+# ─────────────────────────────────────────
+# Time
+# ─────────────────────────────────────────
+[time]
+disabled   = false
+style      = "bold fg:#6c7086"
+format     = "[$time]($style)"
+time_format = "%H:%M"
+ 
+# ─────────────────────────────────────────
+# Prompt character
+# ─────────────────────────────────────────
+[character]
+success_symbol = "[❯](bold fg:#a6e3a1)"
+error_symbol   = "[❯](bold fg:#f38ba8)"
+vimcmd_symbol  = "[❮](bold fg:#89b4fa)"
+ 
+# ─────────────────────────────────────────
+# Node / others (disabled to keep it clean)
+# ─────────────────────────────────────────
+[nodejs]
+disabled = true
+ 
+[ruby]
+disabled = true
+ 
+[java]
+disabled = true
+ 
+[package]
+disabled = true
