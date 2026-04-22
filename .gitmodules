@@ -1,0 +1,3 @@
+[submodule "themes/starship"]
+	path = themes/starship
+	url = https://github.com/catppuccin/starship.git
