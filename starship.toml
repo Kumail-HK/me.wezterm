@@ -3,10 +3,25 @@
 # ║  Shows: dir · git branch · python env · exit code       ║
 # ╚══════════════════════════════════════════════════════════╝
  
-# Overall format — left prompt line 1
+# Overall format — 1-line powerline
 format = """
-[╭─](bold bright-black)$os$username$hostname $directory$git_branch$git_status$python$conda$fill$cmd_duration$time
-[╰─](bold bright-black)$character"""
+[](blue)\
+$os\
+$username\
+$hostname\
+[](fg:blue bg:sky)\
+$directory\
+[](fg:sky bg:green)\
+$git_branch\
+$git_status\
+[](fg:green bg:yellow)\
+$python\
+[](fg:yellow bg:sapphire)\
+$conda\
+[](fg:sapphire bg:lavender)\
+$cmd_duration\
+[ ](fg:lavender)\
+$character"""
  
 right_format = ""
  
@@ -19,16 +34,17 @@ palette = "catppuccin_mocha"
 # ─────────────────────────────────────────
 [os]
 disabled = false
-style = "bold fg:#89b4fa"
+style = "bg:blue fg:crust"
+format = "[ $symbol ]($style)"
  
 [os.symbols]
-Linux   = " "
-Ubuntu  = " "
-Debian  = " "
-Arch    = " "
-Fedora  = " "
-Windows = " "
-Macos   = " "
+Linux   = "󰌽"
+Ubuntu  = "󰕈"
+Debian  = "󰣚"
+Arch    = "󰣇"
+Fedora  = "󰣛"
+Windows = "󰍲"
+Macos   = "󰀵"
 
 # ─────────────────────────────────────────
 # Catpuccin themes
@@ -63,30 +79,30 @@ mantle = "#181825"
 crust = "#11111b"
 
 # ─────────────────────────────────────────
-# Username (only shown when relevant)
+# Username
 # ─────────────────────────────────────────
 [username]
-show_always = false
-style_user  = "bold fg:#cdd6f4"
-style_root  = "bold fg:#f38ba8"
-format      = "[$user]($style)"
+show_always = true
+style_user  = "bg:blue fg:crust"
+style_root  = "bg:blue fg:red"
+format      = "[ $user ]($style)"
  
 [hostname]
 ssh_only = true
-style    = "bold fg:#fab387"
-format   = "@[$hostname]($style) "
+style    = "bg:blue fg:crust"
+format   = "[@$hostname ]($style)"
  
 # ─────────────────────────────────────────
 # Directory
 # ─────────────────────────────────────────
 [directory]
-style            = "bold fg:#89dceb"
+style            = "bg:sky fg:crust"
 read_only        = " 󰌾"
-read_only_style  = "fg:#f38ba8"
+read_only_style  = "bg:sky fg:red"
 truncation_length = 4
 truncate_to_repo = true
 home_symbol      = "~"
-format           = "[ $path]($style)[$read_only]($read_only_style) "
+format           = "[ $path ]($style)[$read_only]($read_only_style)"
  
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -99,15 +115,15 @@ format           = "[ $path]($style)[$read_only]($read_only_style) "
 # Git
 # ─────────────────────────────────────────
 [git_branch]
-symbol    = " "
-style     = "bold fg:#a6e3a1"
-format    = "on [$symbol$branch(:$remote_branch)]($style) "
+symbol    = ""
+style     = "bg:green fg:crust"
+format    = "[ $symbol $branch ]($style)"
 truncation_length = 20
 truncation_symbol = "…"
  
 [git_status]
-style     = "bold fg:#f38ba8"
-format    = "([$all_status$ahead_behind]($style) )"
+style     = "bg:green fg:crust"
+format    = "[($all_status$ahead_behind )]($style)"
 conflicted  = "⚡"
 ahead       = "⇡${count}"
 behind      = "⇣${count}"
@@ -124,17 +140,17 @@ deleted     = "✘"
 # Python  (virtualenv / pyenv / conda)
 # ─────────────────────────────────────────
 [python]
-symbol          = " "
-style           = "bold fg:#f9e2af"
-format          = 'via [$symbol$pyenv_prefix($version )(\($virtualenv\) )]($style)'
+symbol          = ""
+style           = "bg:yellow fg:crust"
+format          = '[ $symbol $pyenv_prefix($version )(\($virtualenv\) )]($style)'
 detect_files    = ["requirements.txt", "setup.py", "setup.cfg", "pyproject.toml", "Pipfile", ".python-version"]
 detect_folders  = [".venv", "venv", "__pycache__"]
 python_binary   = ["python3", "python"]
  
 [conda]
-symbol  = " "
-style   = "bold fg:#f9e2af"
-format  = "[$symbol$environment]($style) "
+symbol  = " "
+style   = "bg:sapphire fg:crust"
+format  = "[ $symbol$environment ]($style)"
 ignore_base = true
  
 # ─────────────────────────────────────────
@@ -147,15 +163,15 @@ symbol = " "
 # Command duration
 # ─────────────────────────────────────────
 [cmd_duration]
-min_time   = 2000
-style      = "bold fg:#6c7086"
-format     = "took [$duration]($style) "
+min_time   = 0
+style      = "bg:lavender fg:crust"
+format     = "[  $duration ]($style)"
  
 # ─────────────────────────────────────────
 # Time
 # ─────────────────────────────────────────
 [time]
-disabled   = false
+disabled   = true
 style      = "bold fg:#6c7086"
 format     = "[$time]($style)"
 time_format = "%H:%M"
@@ -164,9 +180,9 @@ time_format = "%H:%M"
 # Prompt character
 # ─────────────────────────────────────────
 [character]
-success_symbol = "[❯](bold fg:#a6e3a1)"
-error_symbol   = "[❯](bold fg:#f38ba8)"
-vimcmd_symbol  = "[❮](bold fg:#89b4fa)"
+success_symbol = "[ ❯](bold fg:green)"
+error_symbol   = "[ ❯](bold fg:red)"
+vimcmd_symbol  = "[ ❮](bold fg:blue)"
  
 # ─────────────────────────────────────────
 # Node / others (disabled to keep it clean)
