@@ -40,10 +40,10 @@ config.text_background_opacity = 1.0
 -- ─────────────────────────────────────────
 config.window_decorations = "RESIZE" -- hide title bar, keep resize border
 config.window_padding = {
-	left = 14,
-	right = 14,
-	top = 10,
-	bottom = 10,
+	left = 7,
+	right = 7,
+	top = 5,
+	bottom = 5,
 }
 config.initial_cols = 220
 config.initial_rows = 50
