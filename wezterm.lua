@@ -32,8 +32,12 @@ config.font_rules = {
 config.color_scheme = "Catppuccin Mocha"
 
 -- Fine-tune window background opacity for a subtle depth effect
-config.window_background_opacity = 0.96
+config.window_background_opacity = 0.92
 config.text_background_opacity = 1.0
+
+-- Windows alternatives (keep commented unless running on Windows)
+-- config.win32_system_backdrop = "Mica"
+-- config.win32_system_backdrop = "Acrylic"
 
 -- ─────────────────────────────────────────
 -- WINDOW APPEARANCE
